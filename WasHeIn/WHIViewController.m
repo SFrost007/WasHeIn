@@ -57,7 +57,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         [openableURLs addObject:url];
         
         if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"imdb://"]]) {
-            NSString *newURL = [request.URL.absoluteString stringByReplacingOccurrencesOfString:@"http://www.imdb.com" withString:@"imdb://"];
+            NSString *newURL = [request.URL.absoluteString stringByReplacingOccurrencesOfString:@"http://m.imdb.com" withString:@"imdb://"];
             [openableApps addObject:@"IMDB"];
             [openableURLs addObject:[NSURL URLWithString:newURL]];
         }
