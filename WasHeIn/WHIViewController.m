@@ -10,6 +10,7 @@
 
 @interface WHIViewController ()
 @property (strong, nonatomic) UIWebView *webView;
+@property (strong, nonatomic) UIImageView *splash;
 @end
 
 @interface WHIBrowserActionSheet : UIActionSheet
@@ -24,14 +25,30 @@
 
 - (void) loadView
 {
+    // Create the container view
+    self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+
+    // Set up the splash image
+    NSString *splashImage = nil;
+    if ([[UIScreen mainScreen] bounds].size.height == 568) {
+        splashImage = @"Default-568h@2x.png";
+    } else {
+        splashImage = @"Default.png";
+    }
+    self.splash = [[UIImageView alloc] initWithImage:[UIImage imageNamed:splashImage]];
+    self.splash.frame = self.view.frame;
+    [self.view addSubview:self.splash];
+
+    // Create the web view
     self.webView = [[UIWebView alloc] init];
     self.webView.scrollView.bounces = NO;
     self.webView.delegate = self;
+    self.webView.hidden = YES;
     NSString *path = [[NSBundle mainBundle] pathForResource:@"www/index" ofType:@"htm"];
     NSURL *url = [NSURL fileURLWithPath:path];
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
-    self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.view addSubview:self.webView];
+
     [self fixIOS7StatusBar];
 }
 
@@ -68,6 +85,11 @@ static NSString * encodeByAddingPercentEscapes(NSString *input) {
                                                         (CFStringRef)@"!*'();:@&=+$,/?%#[]",
                                                         kCFStringEncodingUTF8));
     return encodedValue;
+}
+
+- (void) webViewDidFinishLoad:(UIWebView *)webView
+{
+    webView.hidden = NO;
 }
 
 - (BOOL) webView:(UIWebView *)webView
