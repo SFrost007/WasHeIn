@@ -27,13 +27,13 @@ $(document).on("pageshow", "#resultsPage", function(e, ui) {
 		$.get(theUrl, function(data){
 
 			// Scrape the cast table from the returned data
-			$('.poster', $(data)).each(function(i, elem){
-				var actorName = $('.title', elem).text().trim();
+			$('.col-xs-12.col-md-6', $(data)).each(function(i, elem){
+				var actorName = $('h4', elem).text().trim();
 				if (!actorName.length) {
 					return true;
 				}
 
-				var charText = $('.detail', elem).text();
+				var charText = $('p.h4.unbold', elem).text();
 				if (charText.indexOf('(') != -1) {
 					charText = charText.substr(0, charText.indexOf('('));
 				}
@@ -45,11 +45,19 @@ $(document).on("pageshow", "#resultsPage", function(e, ui) {
 				if (thumbURL.substr(0,1) == '/') {
 					thumbURL = 'http://m.imdb.com' + thumbURL;
 				}
+				
+				var link = $('a', elem).attr('href');
+				if (link.indexOf('?') != -1) {
+					link = link.substr(0, link.indexOf('?'));
+				}
+				if (link.substr(0,2) == '//') {
+					link = 'http:' + link;
+				}
 
 				show.cast.push({
 					'name' : actorName,
 					'char' : charText.trim(),
-					'link' : $('.title a', elem).attr('href'),
+					'link' : link,
 					'thumb' : thumbURL
 				});
 			});
@@ -93,7 +101,7 @@ $(document).on("pageshow", "#resultsPage", function(e, ui) {
 				if (matches.length) {
 					$.each(matches, function(i, actor){
 						html += '<li>'
-							+ '<a href="http://www.imdb.com' + actor.link + '" target="_blank">'
+							+ '<a href="' + actor.link + '" target="_blank">'
 							+ '<img src="' + actor.thumb + '"/>'
 							+ '<h3>' + actor.name + '</h3>'
 							+ '<p>' + actor.char + '</p></a></li>';
