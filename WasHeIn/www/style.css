@@ -1,0 +1,60 @@
+#searchPage h2 {
+	margin-bottom: 0;
+}
+
+#searchPage .ui-listview {
+	margin-bottom: 54px;
+}
+
+#searchPage .ui-listview-filter-inset {
+	margin-top: 0;
+}
+
+.ui-li-has-thumb .ui-btn-inner a.ui-link-inherit,
+.selectedResult .ui-btn-inner {
+	min-height: 55px;
+	padding: 0 30px 0 50px;
+}
+
+#searchPage .imdbAutoComplete .ui-li-thumb,
+.selectedResult img,
+#resultsPage #resultList img {
+	max-height: 55px;
+}
+
+
+.selectedResult {
+	border-radius: 10px;
+	margin-bottom: 20px;
+}
+	.selectedResult .ui-btn-inner {
+		text-align: left;
+	}
+	.selectedResult img {
+		position: absolute;
+		left: -50px;
+		top: 0;
+	}
+	.selectedResult h3 {
+		font-size: 16px;
+		margin: .6em 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	.selectedResult p {
+		font-size: 12px;
+		font-weight: normal;
+		margin: -6px 0 0 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+#resultsPage .showName {
+	font-weight: bold;
+	font-size: x-large;
+}
+
+#resultList img[src*=people-40x59] {
+	width: 40px;
+	height: 54px;
+}

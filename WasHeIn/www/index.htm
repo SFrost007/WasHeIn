@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>IMDB Xref</title>
+	<script src="jquery-1.10.2.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="jquery.mobile-1.3.1.min.css"/>
+	<script src="jquery.mobile-1.3.1.min.js"></script>
+	<script src="autocomplete.js"></script>
+	<script src="findmatches.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+	<div data-role="page" id="searchPage">
+		<div data-theme="a" data-role="header">
+			<h3>
+				Was He In..?
+			</h3>
+		</div>
+		<div data-role="content">
+			<h2>Movie / TV Show 1</h2>
+			<ul id="autocomplete1"
+				class="imdbAutoComplete"
+				data-role="listview"
+				data-inset="true"
+				data-filter="true"
+				data-filter-placeholder="Find a show..."
+				data-filter-theme="d"></ul>
+			<a data-role="button"
+				data-icon="delete"
+				data-iconpos="right"
+				id="selection1"
+				class="selectedResult">
+					<img src=""/>
+					<h3>SHOW_TITLE</h3>
+					<p>ACTOR_SUMMARY</p>
+			</a>
+
+			<h2>Movie / TV Show 2</h2>
+			<ul id="autocomplete2"
+				class="imdbAutoComplete"
+				data-role="listview"
+				data-inset="true"
+				data-filter="true"
+				data-filter-placeholder="Find a show..."
+				data-filter-theme="d"></ul>
+
+			<a data-role="button"
+				data-icon="delete"
+				data-iconpos="right"
+				id="selection2"
+				class="selectedResult">
+					<img src=""/>
+					<h3>SHOW_TITLE</h3>
+					<p>ACTOR_SUMMARY</p>
+			</a>
+
+
+			<a data-role="button"
+				id="searchBtn"
+				class="ui-disabled"
+				data-theme="a"
+				href="#resultsPage"
+				data-icon="search"
+				data-iconpos="right"
+				data-transition="slide">
+					Find Common Actors!
+				</a>
+		</div>
+	</div>
+
+	<div data-role="page" id="resultsPage" data-add-back-btn="true">
+		<div data-theme="a" data-role="header">
+			<h3>
+				Results
+			</h3>
+		</div>
+		<div data-role="content">
+			<p>
+				Actors in
+				<span class="showName" id="showName1">SHOW_NAME</span>
+				and
+				<span class="showName" id="showName2">SHOW_NAME</span>
+			</p>
+
+			<ul id="resultList"
+				data-role="listview"
+				data-inset="true">
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
