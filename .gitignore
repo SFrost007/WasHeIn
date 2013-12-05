@@ -3,3 +3,4 @@
  
 # Exclude user-specific XCode 4 files
 xcuserdata
+*.xccheckout
