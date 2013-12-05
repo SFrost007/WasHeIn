@@ -9,14 +9,25 @@
 #import "WHIAppDelegate.h"
 #import "WHIViewController.h"
 
+
+@interface WHIAppDelegate ()
+@property (strong, nonatomic) WHIViewController *viewController;
+@end
+
 @implementation WHIAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [[WHIViewController alloc] init];
+    self.viewController = [[WHIViewController alloc] init];
+    self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void) application:(UIApplication *)application didChangeStatusBarFrame:(CGRect)oldStatusBarFrame
+{
+    [self.viewController fixIOS7StatusBar];
 }
 
 @end

@@ -8,6 +8,10 @@
 
 #import "WHIViewController.h"
 
+@interface WHIViewController ()
+@property (strong, nonatomic) UIWebView *webView;
+@end
+
 @interface WHIBrowserActionSheet : UIActionSheet
 @property (strong, nonatomic) NSArray *urlList;
 @end
@@ -20,13 +24,39 @@
 
 - (void) loadView
 {
-    UIWebView *wv = [[UIWebView alloc] init];
-    wv.scrollView.bounces = NO;
-    wv.delegate = self;
+    self.webView = [[UIWebView alloc] init];
+    self.webView.scrollView.bounces = NO;
+    self.webView.delegate = self;
     NSString *path = [[NSBundle mainBundle] pathForResource:@"www/index" ofType:@"htm"];
     NSURL *url = [NSURL fileURLWithPath:path];
-    [wv loadRequest:[NSURLRequest requestWithURL:url]];
-    self.view = wv;
+    [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+    self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [self.view addSubview:self.webView];
+    [self fixIOS7StatusBar];
+}
+
+// Set the correct size for the webview based on the OS version
+- (void) fixIOS7StatusBar
+{
+    CGRect targetFrame;
+
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
+        targetFrame = [[UIScreen mainScreen] applicationFrame];
+        CGFloat statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
+        if (statusBarHeight == 40) {
+            targetFrame.origin.y -= statusBarHeight/2;
+            targetFrame.size.height += statusBarHeight/2;
+        }
+    } else {
+        targetFrame = self.view.frame;
+    }
+
+    self.webView.frame = targetFrame;
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleBlackOpaque;
 }
 
 static NSString * encodeByAddingPercentEscapes(NSString *input) {

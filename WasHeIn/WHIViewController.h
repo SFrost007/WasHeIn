@@ -11,4 +11,6 @@
 @interface WHIViewController : UIViewController
     <UIWebViewDelegate, UIActionSheetDelegate>
 
+- (void) fixIOS7StatusBar;
+
 @end
