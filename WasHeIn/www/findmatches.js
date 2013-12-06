@@ -25,7 +25,10 @@ $(document).on("pageshow", "#resultsPage", function(e, ui) {
 	$.each(showsToFetch, function(i, show){
 		var theUrl = "http://m.imdb.com/title/" + show.id + "/fullcredits/cast";
 		$.get(theUrl, function(data){
-
+			// Remove all image tags from the data string to avoid sending HTTP requests
+			// for them all when jQuery constructs the DOM elements
+			data = data.replace(/<img/gi, "<notanimage");
+			
 			// Scrape the cast table from the returned data
 			$('.col-xs-12.col-md-6', $(data)).each(function(i, elem){
 				var actorName = $('h4', elem).text().trim();
@@ -41,7 +44,7 @@ $(document).on("pageshow", "#resultsPage", function(e, ui) {
 					charText = charText.substr(0, charText.indexOf('/'));
 				}
 				
-				var thumbURL = $('img', elem).attr('src').replace(/SX(\d\d)_SY(\d\d)/g, "SX100_SY110");
+				var thumbURL = $('notanimage', elem).attr('src').replace(/SX(\d\d)_SY(\d\d)/g, "SX100_SY110");
 				if (thumbURL.substr(0,1) == '/') {
 					thumbURL = 'http://m.imdb.com' + thumbURL;
 				}
