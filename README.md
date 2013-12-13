@@ -13,3 +13,5 @@ While there are a plethora of third-party APIs/wrappers around such data, unfort
 The native code is a thin wrapper around the webview control, adding options to open any actor's details page in a browser of the user's choice.
 
 The web files will work on any browser capable of running JQuery, however due to the screen-scraping required, this cannot be hosted on a web server and accessed directly via a browser due to cross-origin security policies.
+
+Actor icon used by permission under the Demo License Agreement from [Icons Land](http://www.icons-land.com/).
