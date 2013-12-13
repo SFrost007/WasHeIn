@@ -4,6 +4,7 @@ Was He In..?
 This is a simple (JQuery-Mobile based) iPhone application for cross referencing movies using IMDB. Enter two movies or TV shows, and the app will return a list of actors who appear in both.
 
 ![Screenshot 1](http://raw.github.com/SFrost007/WasHeIn/master/Screenshot1.png)
+&nbsp;
 ![Screenshot 2](http://raw.github.com/SFrost007/WasHeIn/master/Screenshot2.png)
 
 Due to IMDB's lack of a published API, this works as a mash-up of two approaches:
