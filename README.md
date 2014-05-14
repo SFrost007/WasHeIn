@@ -1,4 +1,4 @@
-![AppIcon](http://raw.github.com/SFrost007/WasHeIn/master/WasHeIn/Images.xcassets/AppIcon.appiconset/IconiOS6~iphone.png =38x) Was He In..?
+Was He In..?
 ============
 
 This is a simple (JQuery-Mobile based) iPhone application for cross referencing movies using IMDB. Enter two movies or TV shows, and the app will return a list of actors who appear in both.
