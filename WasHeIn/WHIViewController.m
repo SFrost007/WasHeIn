@@ -30,7 +30,9 @@
 
     // Set up the splash image
     NSString *splashImage = nil;
-    if ([[UIScreen mainScreen] bounds].size.height == 568) {
+    if ([[UIScreen mainScreen] bounds].size.height == 667) {
+        splashImage = @"Default-667h@2x.png";
+    } else if ([[UIScreen mainScreen] bounds].size.height == 568) {
         splashImage = @"Default-568h@2x.png";
     } else {
         splashImage = @"Default.png";
@@ -112,6 +114,12 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             NSString *newURL = [request.URL.absoluteString stringByReplacingOccurrencesOfString:@"http://m.imdb.com" withString:@"imdb://"];
             [openableApps addObject:@"IMDB"];
             [openableURLs addObject:[NSURL URLWithString:newURL]];
+          
+            if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0) {
+                // IMDB will hijack opening in Safari
+                [openableApps removeObject:@"Safari"];
+                [openableURLs removeObject:url];
+            }
         }
         if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"atomic://"]]) {
             NSString *newURL = [request.URL.absoluteString stringByReplacingOccurrencesOfString:@"http://" withString:@"atomic://http://"];
